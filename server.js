@@ -12,12 +12,14 @@ app.use('/todo', todoRoutes);
 
 const uri = process.env.DB_URL;
 
+const port = process.env.PORT || 3000;
+
 mongoose
   .connect(uri)
   .then(() => {
     console.log('Connected');
-    app.listen(process.env.PORT, () => {
-      console.log('Server started on port 3000');
+    app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
     });
   })
   .catch((err) => {
