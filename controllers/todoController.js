@@ -16,8 +16,8 @@ const addTodo = (req, res) => {
   todo
     .save()
     .then((result) => {
-      console.log('Todo Added');
-      res.status(200).send('Added');
+      console.log(result);
+      res.status(200).json(result);
     })
     .catch((err) => {
       console.log(err);
