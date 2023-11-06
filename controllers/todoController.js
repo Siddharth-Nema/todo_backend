@@ -63,7 +63,7 @@ const deleteTodo = (req, res) => {
 const getTodo = (req, res) => {
   const userId = req.params.id;
   Todo.find({
-    userID: id,
+    userID: userId,
   })
     .then((result) => {
       res.status(200).json(result);
