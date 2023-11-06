@@ -8,10 +8,12 @@ const addTodo = (req, res) => {
     res.status(400).send('Title not found');
   }
   const isCompleted = req.body.isCompleted ?? false;
+  const userId = req.body.userID ?? '';
 
   const todo = new Todo({
     title: title,
     isCompleted: isCompleted,
+    userID: userId,
   });
   todo
     .save()
@@ -50,7 +52,7 @@ const deleteTodo = (req, res) => {
   const id = req.params.id;
 
   if (!id) {
-    res.status(400).send('Id found');
+    res.status(400).send('Id Not found');
   }
 
   Todo.findByIdAndDelete(id).then((result) => {
@@ -59,7 +61,10 @@ const deleteTodo = (req, res) => {
 };
 
 const getTodo = (req, res) => {
-  Todo.find()
+  const userId = req.params.id;
+  Todo.find({
+    userID: id,
+  })
     .then((result) => {
       res.status(200).json(result);
     })

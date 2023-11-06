@@ -3,7 +3,7 @@ const todoController = require('../controllers/todoController');
 
 const router = express.Router();
 
-router.get('/', todoController.getTodo);
+router.get('/:id', todoController.getTodo);
 
 router.post('/add', todoController.addTodo);
 
