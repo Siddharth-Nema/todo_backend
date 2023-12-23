@@ -1,6 +1,7 @@
 const express = require('express');
 const todoRoutes = require('./routes/todo_routes');
 const userRoutes = require('./routes/user_routes');
+const projectRoutes = require('./routes/project_routes');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use('/todo', todoRoutes);
 app.use('/user', userRoutes);
+app.use('/project', projectRoutes);
 
 const uri = process.env.DB_URL;
 
