@@ -7,7 +7,7 @@ const addProject = (req, res) => {
     _id: uuidv4(),
     userID: req.body.userID,
     title: req.body.title,
-    tasks: {},
+    tasks: [],
   });
 
   project
@@ -55,14 +55,15 @@ const addTasktoProject = (req, res) => {
         res.status(400).send('Project not found');
       }
 
+      const id = uuidv4();
       result.tasks.push({
-        _id: uuidv4(),
+        _id: id,
         title: title,
         isCompleted: false,
         userID: userID,
       });
       result.save();
-      res.status(200).send('Task saved');
+      res.status(200).json({ _id: id });
     })
     .catch((err) => {
       console.log(err);
@@ -71,7 +72,6 @@ const addTasktoProject = (req, res) => {
 };
 
 const updateInProject = (req, res) => {
-  console.log('jere');
   const { projectID, taskID, taskStatus } = req.body;
 
   Project.findById({ _id: projectID })
