@@ -82,7 +82,7 @@ const updateInProject = (req, res) => {
 
       result.tasks.forEach((element) => {
         if (element._id == taskID) {
-          element.isCompleted = taskStatus;
+          element.isCompleted = taskStatus == 'true';
         }
       });
       result.markModified('tasks');
